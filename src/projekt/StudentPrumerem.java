@@ -5,7 +5,8 @@ public class StudentPrumerem extends Student implements Comparable<StudentPrumer
 	public StudentPrumerem(Student s)
 	{
 		super(s.getJmeno(), s.getPrijmeni(), s.getDatumNar(), s.getID());
-		this.znamky = s.znamky;
+		for (double znamka: s.getZnamky())
+			this.addZnamka(znamka);
 	}
 	@Override
 	public int compareTo(StudentPrumerem s) 

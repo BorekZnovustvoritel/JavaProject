@@ -105,7 +105,7 @@ public class Databaze
 			Osoba temp = databaze.get(klic);
 			if (temp instanceof Ucitel)
 			{
-				if (((Ucitel) temp).studenti.contains(stu))
+				if (((Ucitel) temp).getStudenti().contains(stu))
 					ucitele.add((Ucitel)temp);
 			}
 		}
@@ -140,7 +140,7 @@ public class Databaze
 		Collections.sort(ucitele);
 		for (Ucitel u: ucitele)
 		{
-			System.out.println("ID: "+u.getID()+", "+u.getJmeno()+" "+u.getPrijmeni()+", pocet studentu: "+u.studenti.size());
+			System.out.println("ID: "+u.getID()+", "+u.getJmeno()+" "+u.getPrijmeni()+", pocet studentu: "+u.getStudenti().size());
 		}
 	}
 
@@ -179,7 +179,7 @@ public class Databaze
 	public void tiskStudentuUcitele(Ucitel u)
 	{
 		ArrayList<StudentPrumerem> studentiRazeni = new ArrayList<>();
-		for (Student s: (u).studenti)
+		for (Student s: (u).getStudenti())
 		{	
 			StudentPrumerem tempS = new StudentPrumerem(s);
 			studentiRazeni.add(tempS);

@@ -9,6 +9,7 @@ public class Ucitel extends Osoba
 	private static double odmenaZaStudenta = 100;
 	private static double odmenaZaStudentaSeStipendiem = 500;
 	private static double danZPrijmu = 0.15;
+	private HashSet<Student> studenti = new HashSet<>();
 	private int getStudentiSeStipendiem() 
 	{
 		int pocet = 0;
@@ -32,11 +33,19 @@ public class Ucitel extends Osoba
 	{
 		return (1-danZPrijmu)*(zakladniOdmena + studenti.size()*odmenaZaStudenta+odmenaZaStudentaSeStipendiem*getStudentiSeStipendiem());
 	}
-	protected HashSet<Student> studenti = new HashSet<>();
 	
 	public void studentDoSeznamu(Student stu)
 	{
 		this.studenti.add(stu);
+	}
+	public boolean removeStudent(Student stu)
+	{
+		if (this.studenti.contains(stu))
+		{
+			this.studenti.remove(stu);
+			return true;
+		}
+		return false;
 	}
 	public HashSet<Student> getStudenti()
 	{

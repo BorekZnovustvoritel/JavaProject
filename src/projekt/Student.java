@@ -7,6 +7,7 @@ public class Student extends Osoba
 {
 	private static double dobryPrumer = 1.5;
 	private static double stipendium = 2000;
+	private ArrayList<Double> znamky = new ArrayList<>();
 	public Student(String jmeno, String prijmeni, LocalDate datumNarozeni, int ID)
 	{
 		super(jmeno, prijmeni, datumNarozeni, ID);
@@ -20,7 +21,6 @@ public class Student extends Osoba
 		return 0;
 	}
 	
-	protected ArrayList<Double> znamky = new ArrayList<>();
 	public ArrayList<Double> getZnamky()
 	{
 		return this.znamky;

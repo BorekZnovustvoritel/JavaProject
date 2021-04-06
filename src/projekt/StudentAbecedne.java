@@ -5,7 +5,8 @@ public class StudentAbecedne extends Student implements Comparable<StudentAbeced
 	public StudentAbecedne(Student s)
 	{
 		super(s.getJmeno(), s.getPrijmeni(), s.getDatumNar(), s.getID());
-		this.znamky = s.znamky;
+		for (double znamka: s.getZnamky())
+			this.addZnamka(znamka);
 	}
 
 	@Override
