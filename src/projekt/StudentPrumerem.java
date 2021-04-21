@@ -18,9 +18,13 @@ public class StudentPrumerem extends Student implements Comparable<StudentPrumer
 	{
 		double thisTemp = this.getPrumer();
 		double thatTemp = s.getPrumer();
-		if (thisTemp<thatTemp && thisTemp != 0)
+		if (thisTemp == 0)
+			return 1;
+		else if (thisTemp<thatTemp)
 			return -1;
-		else if (thisTemp>thatTemp || thisTemp == 0)
+		else if (thatTemp == 0)
+			return -1;
+		else if (thisTemp>thatTemp)
 			return 1;
 		else
 			return 0;

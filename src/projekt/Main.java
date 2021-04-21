@@ -90,14 +90,14 @@ public class Main
 						int id = 0;
 						do
 						{
-							System.out.println("Zadejte ID uèitele tohoto studenta, pokud dalšího uèitele pøidat nechcete, zadejte 0.");
+							System.out.println("Zadejte ID uèitele tohoto studenta, pokud dalšího uèitele pøidat nechcete, zadejte 0. Kadı student musí mít aspoò 1 uèitele.");
 							id = scanInt();
 							Osoba ucitel = skola.getOsoba(id);
 							if (ucitel instanceof Ucitel)
 								ucitele.add((Ucitel)ucitel);
 							else if (id != 0)
 								System.out.println("Neexistující ID uèitele. Uèitel nemohl byt studentovi pøidan.");
-						} while (id != 0);
+						} while (id != 0 || ucitele.isEmpty());
 						System.out.println("Zadejte jméno studenta");
 						String jmeno = scanWord();
 						System.out.println("Zadejte pøíjmení");
@@ -170,12 +170,12 @@ public class Main
 						Osoba student = skola.getOsoba(id);
 						if (student instanceof Student)
 						{
-							System.out.println("Ucitele zaka: ");
+							System.out.println("Uèitelé áka: ");
 							for (Ucitel u: (skola.getUciteleZaka((Student)student)))
 								System.out.println("ID: "+u.getID()+", "+u.getJmeno()+" "+u.getPrijmeni());
 						}
 						else
-							System.out.println("Student s takovym ID nebyl nalezen.");
+							System.out.println("Student s takovım ID nebyl nalezen.");
 						break;
 					}
 					case 5: //uèitelé podle poètu studentù
@@ -214,12 +214,12 @@ public class Main
 					{ // tier 1 menu - manipulace - start ///////////////////////////////////
 						case 1: // oznámkovat studenta
 						{
-							System.out.println("Zadejte ID studenta k oznamkovani");
+							System.out.println("Zadejte ID studenta k oznámkování");
 							int id = scanInt();
 							Osoba temp = skola.getOsoba(id);
 							if (temp instanceof Student)
 							{
-								System.out.println("Zadejte znamku");
+								System.out.println("Zadejte známku");
 								double znamka = scanDouble();
 								if (znamka >= 1 && znamka <= 5)
 									((Student)temp).addZnamka(znamka);
@@ -232,7 +232,7 @@ public class Main
 							break;
 						case 2: // propustit èlovìka
 						{
-							System.out.println("Zadejte ID cloveka k odstraneni");
+							System.out.println("Zadejte ID èlovìka k odstranìní");
 							int id = scanInt();
 							Osoba temp = skola.getOsoba(id);
 							if (temp != null)
