@@ -1,2 +1,3 @@
+PATH:myDB.db
 USERNAME:root
 PASSWORD:

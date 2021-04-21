@@ -1,5 +1,10 @@
 package projekt;
-
+/**
+ * Tøída objektù UcitelPoctemStudentu - uèitelé školy s pravidlem øazení, odvozeno od tøídy Ucitel, implementuje Comparable
+ * @author Marek Szymutko
+ * 
+ * Konstruktor UcitelPoctemStudentu() kopíruje atributy vloženého uèitele
+ */
 public class UcitelPoctemStudentu extends Ucitel implements Comparable<UcitelPoctemStudentu>
 {
 	@Override
