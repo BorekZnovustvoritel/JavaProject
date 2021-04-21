@@ -9,19 +9,30 @@ import projekt.Databaze;
 import projekt.Osoba;
 import projekt.Student;
 import projekt.Ucitel;
-
+/**
+ * Tøída slouží pro spojení projektu s lokální SQL databází
+ * @author Marek Szymutko
+ * Obsahuje promìnné:
+ * Connection conn - promìnná øídící spojení
+ * 
+ * Konstruktor je implicitní
+ */
 public class DConnection {
-	public DConnection() {
-	}
 
 	private Connection conn;
-
-	public boolean connect(String user, String password) 
+	/**
+	 * Spojení s databázovým souborem
+	 * @param path - název souboru nebo cesta + název (String)
+	 * @param user - pøihlašovací login do databáze (String)
+	 * @param password - heslo pro pøihlášení do databáze (String)
+	 * @return boolean connected - podaøilo se spojení?
+	 */
+	public boolean connect(String path, String user, String password) 
 	{ 
 	      conn = null; 
 	      try 
 	      {
-	    	  conn = DriverManager.getConnection("jdbc:sqlite:myDB.db", user, password);                       
+	    	  conn = DriverManager.getConnection("jdbc:sqlite:"+path, user, password);                       
 	      } 
 	      catch (SQLException e)
 	      { 
@@ -30,7 +41,9 @@ public class DConnection {
 	      }
 	      return true;
 	}
-
+	/**
+	 * Odpojení z databáze, øádné uzavøení
+	 */
 	public void disconnect()
 	{
 		if (conn != null)
@@ -45,6 +58,15 @@ public class DConnection {
 			}
 		}
 	}
+	/**
+	 * Vytvoøení databázové tabulky Osoby,  která má následující promìnné:
+	 * int id
+	 * bit student - je student (1) nebo uèitel (0)?
+	 * varchar(50) jmeno
+	 * varchar(50) prijmeni
+	 * date datum
+	 * @return boolean podariloSe
+	 */
 	public boolean createTableOsoby()
 	{
 	     if (conn==null)
@@ -61,6 +83,10 @@ public class DConnection {
 	    }
 	    return false;
 	}
+	/**
+	 * Zresetování databázové tabulky Osoby (zahození a nové vytvoøení)
+	 * @return boolean podariloSe
+	 */
 	public boolean resetTableOsoby()
 	{
 		if (conn==null)
@@ -78,6 +104,13 @@ public class DConnection {
 	    }
 	    return false;
 	}
+	/**
+	 * Vytvoøení databázové tabulky Vztahy,  která má následující promìnné:
+	 * int key (jen pro úèely SQL)
+	 * int idU - ID uètele
+	 * int idS - ID jeho žáka
+	 * @return boolean podariloSe
+	 */
 	public boolean createTableVztahy()
 	{
 	     if (conn==null)
@@ -94,6 +127,10 @@ public class DConnection {
 	    }
 	    return false;
 	}
+	/**
+	 * Zresetování databázové tabulky Vztahy (zahození a nové vytvoøení)
+	 * @return boolean podariloSe
+	 */
 	public boolean resetTableVztahy()
 	{
 		if (conn==null)
@@ -111,6 +148,13 @@ public class DConnection {
 	    }
 	    return false;
 	}
+	/**
+	 * Vytvoøení databázové tabulky Znamky,  která má následující promìnné:
+	 * int key (jen pro úèely SQL)
+	 * int idS - ID jeho žáka
+	 * float znamka - známka žáka
+	 * @return boolean podariloSe
+	 */
 	public boolean createTableZnamky()
 	{
 	     if (conn==null)
@@ -127,6 +171,10 @@ public class DConnection {
 	    }
 	    return false;
 	}
+	/**
+	 * Zresetování databázové tabulky Znamky (zahození a nové vytvoøení)
+	 * @return boolean podariloSe
+	 */
 	public boolean resetTableZnamky()
 	{
 		if (conn==null)
@@ -144,6 +192,13 @@ public class DConnection {
 	    }
 	    return false;
 	}
+	/**
+	 * Naèítání celé SQL databáze do Java databáze
+	 * Nejprve naèteme osoby, pak vztahy, pak známky
+	 * Pøed naètením smažeme Java databázi, aby nedocházelo ke kolizím
+	 * @param skola - Java databáze školy (Databaze)
+	 * @return boolean podariloSe
+	 */
 	public boolean nactiVse(Databaze skola)
 	{
 		if (conn==null)
@@ -204,6 +259,12 @@ public class DConnection {
 	    }
 		return false;
 	}
+	/**
+	 * Uložení celé Java databáze do SQL databáze
+	 * V cyklu projdeme všechny lidi a uložíme je buï jako uèitele nebo jako studenta, naèítání známek a vztahù je ve vnoøeném cyklu
+	 * @param skola - Java databáze školy (Databaze)
+	 * @return boolean podariloSe
+	 */
 	public boolean ulozVse(Databaze skola)
 	{
 		if (conn==null)
@@ -260,6 +321,12 @@ public class DConnection {
 		}
 		return false;
 	}
+	/**
+	 * Smaže osobu jen z SQL databáze, v Java databázi èlovìk zùstane
+	 * @param skola - Java databáze, ze které èlovìka vybereme (Databaze)
+	 * @param id - id èlovìka (int)
+	 * @return boolean podariloSe
+	 */
 	public boolean vymazOsobuSQL(Databaze skola, int id)
 	{
 		if (conn==null)
@@ -297,6 +364,12 @@ public class DConnection {
 		}
 		return false;
 	}
+	/**
+	 * Naète jedinou osobu z SQL podle ID
+	 * @param skola - Java databáze, kam nahráváme (Databaze)
+	 * @param id - ID osoby (int)
+	 * @return boolean podariloSe
+	 */
 	public boolean nactiOsobuSQL(Databaze skola, int id)
 	{
 		if (conn==null)
@@ -359,7 +432,7 @@ public class DConnection {
 							uci.studentDoSeznamu(stu);
 					}
 				}
-				System.out.println("Uspesne nacteni");
+				System.out.println("Úspìšné naètení");
 				skola.getPocetLidi(); //kdyby pribyl dal, nez je momentalni kurzor, at neni premazan
 				return true;
 			}
