@@ -4,7 +4,6 @@ import java.time.LocalDate;
 import java.util.HashSet;
 /**
  * Tøída objektù Ucitel - uèitelé školy, odvozeno od tøídy Osoba
- * @author Marek Szymutko
  * Obsahuje promìnné:
  * static double zakladniOdmena - Základní plat kadého uèitele
  * static double odmenaZaStudenta - Pøíplatek za kadého studenta zvláš
@@ -13,6 +12,7 @@ import java.util.HashSet;
  * HashSet<Student> studenti - Seznam studentù, které uèitel uèí
  * 
  * Konstruktor Ucitel() vyuívá konstruktor rodièovské tøídy
+ * @author Marek Szymutko
  */
 public class Ucitel extends Osoba
 {

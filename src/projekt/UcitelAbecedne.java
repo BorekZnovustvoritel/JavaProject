@@ -1,9 +1,8 @@
 package projekt;
 /**
  * Tøída objektù UcitelAbecedne - uèitelé školy s pravidlem øazení, odvozeno od tøídy Ucitel, implementuje Comparable
- * @author Marek Szymutko
- * 
  * Konstruktor UcitelAbecedne() kopíruje atributy vloženého uèitele
+ * @author Marek Szymutko
  */
 public class UcitelAbecedne extends Ucitel implements Comparable<UcitelAbecedne>
 {

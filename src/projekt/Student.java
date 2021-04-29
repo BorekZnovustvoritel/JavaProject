@@ -4,13 +4,13 @@ import java.util.ArrayList;
 import java.time.LocalDate;
 /**
  * Tøída objektù Student - žáci školy, odvozeno od tøídy Osoba
- * @author Marek Szymutko
  * Obsahuje promìnné:
  * static double dobryPrumer - Prùmìr, od kterého bude studentùm vypláceno stipendium
  * static double stipendium - Odmìna za dobrý prùmìr studenta
  * ArrayList<Double> znamky - Známky, z nichž se vypoèítává prùmìr studenta
  * 
  * Konstruktor Student() využívá konstruktor rodièovské tøídy
+ * @author Marek Szymutko
  */
 public class Student extends Osoba
 {

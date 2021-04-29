@@ -9,12 +9,12 @@ import java.util.Iterator;
 import java.util.Map;
 /**
  * Tøída slouží jako objekt databáze školy
- * @author Marek Szymutko
  * Obsahuje promìnné:
  * int pocetLidi - urèuje, jaké je nejvìtší ID v databázi, další èlovìk dostane ID o pozici dál
  * Map<Integer, Osoba> databaze - do ní se osoby ukládají
  * 
  * Konstruktor tøídy není potøeba, dva atributy tøídy se iniciují implicitním konstruktorem
+ * @author Marek Szymutko
  */
 public class Databaze
 {
@@ -127,7 +127,16 @@ public class Databaze
 	{
 		if (databaze.containsKey(id))
 		{
+			Osoba temp = this.getOsoba(id);
 			databaze.remove(id);
+			if (temp instanceof Student)
+			{
+				HashSet<Ucitel> jehoUcitele = this.getUciteleZaka((Student)temp);
+				for(Ucitel u: jehoUcitele)
+				{
+					u.removeStudent((Student)temp);
+				}
+			}
 			return true;
 		}
 		return false;

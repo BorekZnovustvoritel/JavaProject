@@ -11,11 +11,11 @@ import projekt.Student;
 import projekt.Ucitel;
 /**
  * Tøída slouží pro spojení projektu s lokální SQL databází
- * @author Marek Szymutko
  * Obsahuje promìnné:
  * Connection conn - promìnná øídící spojení
  * 
  * Konstruktor je implicitní
+ * @author Marek Szymutko
  */
 public class DConnection {
 
