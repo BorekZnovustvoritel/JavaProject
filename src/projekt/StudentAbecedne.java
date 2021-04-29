@@ -1,9 +1,8 @@
 package projekt;
 /**
  * Tøída objektù StudentAbecedne - studenti školy s pravidlem øazení, odvozeno od tøídy Student, implementuje Comparable
- * @author Marek Szymutko
- * 
  * Konstruktor StudentAbecedne() kopíruje atributy vloženého studenta
+ * @author Marek Szymutko
  */
 public class StudentAbecedne extends Student implements Comparable<StudentAbecedne>
 {

@@ -3,7 +3,6 @@ package projekt;
 import java.time.LocalDate;
 /**
  * Tøída slouží jako obecná abstraktní forma pro objekty typu Student a Ucitel
- * @author Marek Szymutko
  * Obsahuje promìnné:
  * int id - pomocí nìj se osoba ukládá do Java Mapy a SQL databáze
  * String jmeno, String prijmeni
@@ -11,6 +10,7 @@ import java.time.LocalDate;
  * 
  * Konstruktor Osoba() pro lepší implementaci dìdièných konstruktorù
  * abstract double getOdmena() musí být implementována dìdiènými tøídami
+ * @author Marek Szymutko
  */
 public abstract class Osoba
 {
